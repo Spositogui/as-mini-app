@@ -1,6 +1,13 @@
-<main id="main">
+<main class="container" id="main">
   <% if user_signed_in? %>
-    <%= link_to 'Nova lista', '' %>
+    <%= link_to new_list_path, remote: true do %>
+      <i class="fas fa-plus"></i>
+      <span>Nova lista</span>
+    <% end %>
+    <div id="user-lists" class="mt-3">
+      <h3>Você não tem nenhuma lista no momento.</h3>
+    </div>
+    <%= render 'shared/modal' %>
   <% else %>
     <div class="jumbotron">
       <div class="container">

@@ -1,0 +1,20 @@
+<%= form_with model: @list do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Titulo' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+  
+  <%= collection_radio_buttons( :list, :status, List.statuses, :first, :first) do |b| %>
+    <div class="form-check form-check-inline">
+      <%= b.label(:"data-value" => b.value) { b.radio_button(class: 'form-check-input') + b.text.capitalize } %>
+    </div>
+  <% end %>
+
+  <div class="modal-footer">
+    <%= f.submit @list.new_record? ? 'Criar lista' : 'Salvar mudanças', class: 'btn btn-primary' %>
+  </div>
+<% end %>
