@@ -5,7 +5,11 @@
       <span>Nova lista</span>
     <% end %>
     <div id="user-lists" class="mt-3">
-      <h3>Você não tem nenhuma lista no momento.</h3>
+      <% if @lists.present? %>
+        <%= render 'lists/list' %>
+      <% else %>
+        <h3>Você não tem nenhuma lista no momento.</h3>
+      <% end %>
     </div>
     <%= render 'shared/modal' %>
   <% else %>

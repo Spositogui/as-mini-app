@@ -10,6 +10,13 @@ class ListsController < ApplicationController
     if @list.save
       @lists = current_user.lists.order(:created_at)
       respond_to :js
+    else
+      render 'shared/errors.js.erb'
     end
+  end
+
+  def destroy
+    List.find(params[:id]).destroy
+    respond_to :js
   end
 end

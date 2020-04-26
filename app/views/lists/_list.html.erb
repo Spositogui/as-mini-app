@@ -4,7 +4,7 @@
       <tr>
         <td><%= list.title %></td>
         <td><%= "Estado: #{list.status.capitalize}" %></td>
-        <td>Deletar</td>
+        <td><%= link_to 'Excluir', list, method: :delete, remote: true, class: 'delete btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

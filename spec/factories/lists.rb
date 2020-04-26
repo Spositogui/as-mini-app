@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :list do
-    title { "MyString" }
-    description { "MyText" }
-    status { 1 }
+    title { "Lista de estudo" }
+    description { "Sint laborum cupidatat velit irure pariatur labore cillum." }
+    status { 0 }
   end
 end

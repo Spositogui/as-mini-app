@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User create list' do
-  before(:all) do
+  before(:each) do
     user = create(:user)
     login_as(user, scope: :user)
   end
@@ -18,6 +18,14 @@ feature 'User create list' do
       expect(page).to have_content('Lista de estudos')
       expect(page).to have_content('Estado: Publica')
       expect(List.count).to eq(1)
+    end
+
+    scenario "and at least title can't be blank", js: true do
+      visit root_path
+      click_on 'Nova lista'
+      click_on 'Criar lista'
+
+      expect(page).to have_content("Title can't be blank")
     end
   end
 end

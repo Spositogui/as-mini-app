@@ -14,3 +14,4 @@ window.$ = window.jQuery = jQuery;
 
 require('bootstrap')
 require("@fortawesome/fontawesome-free");
+require('packs/custom')
