@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+  before_action :authenticate_user!
+  
   def new
     @list = List.new
     respond_to :js
@@ -18,5 +20,9 @@ class ListsController < ApplicationController
   def destroy
     List.find(params[:id]).destroy
     respond_to :js
+  end
+
+  def public_lists
+    @public_lists = List.public_lists(current_user.id)
   end
 end

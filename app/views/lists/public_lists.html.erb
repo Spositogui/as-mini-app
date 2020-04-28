@@ -1,0 +1,24 @@
+<h3>Listas públicas</h3>
+
+<% if @public_lists.blank? %>
+  <h5>Não existem listas públicas no momento.</h5>
+<% else %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Favoritar</th>
+        <th scope="col">Titulo da lista</th>
+        <th scope="col">Usuario</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @public_lists.each do |list| %>
+        <tr>  
+          <th scope="row">Star</th>
+          <td><%= list.title %></td>
+          <td><%= list.user.email %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
