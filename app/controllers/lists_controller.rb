@@ -5,9 +5,9 @@ class ListsController < ApplicationController
   end
 
   def create
-    @list = List.new(params.require(:list).permit(:title, :description, :status)
-                                          .merge(user_id: current_user.id))
-    if @list.save
+    @list = List.new(list_params)
+    @list.user_id = current_user.id
+    if @list.save!
       @lists = current_user.lists.order(:created_at)
       respond_to :js
     else
@@ -19,4 +19,11 @@ class ListsController < ApplicationController
     List.find(params[:id]).destroy
     respond_to :js
   end
+
+  private 
+    
+    def list_params
+      params.require(:list).permit(:title, :description, :status, 
+        tasks_attributes: Task.attribute_names.map(&:to_sym).push(:_destroy))
+    end
 end

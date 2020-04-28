@@ -1,0 +1,10 @@
+<tr>
+  <td>
+    <%= f.label :name, class: 'hidden' %>
+    <%= f.text_field :name, placeholder: 'Ex: Ir ao mercado', class: 'form-control' %>
+  </td>
+  <td>
+    <%= f.check_box :_destroy, class: 'hidden' %>
+    <%= f.label :delete, 'Deletar', class: 'remove-task-field btn btn-danger' %>
+  </td>
+</tr>

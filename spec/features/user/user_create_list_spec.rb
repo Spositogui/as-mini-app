@@ -28,4 +28,18 @@ feature 'User create list' do
       expect(page).to have_content("Title can't be blank")
     end
   end
+
+  context  'list with tasks' do
+    scenario 'successfully', js: true do
+      visit root_path
+      click_on 'Nova lista'
+      fill_in 'Titulo', with: 'Lista A'
+      click_on 'Adicionar tarefa'
+      fill_in 'Name', with: 'Primeira tarefa'
+      click_on 'Criar lista'
+
+      expect(page).to have_content('Lista A')
+      expect(Task.count).to eq(1) 
+    end
+  end
 end
