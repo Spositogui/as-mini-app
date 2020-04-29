@@ -1,0 +1,25 @@
+<h3>Listas favoritas:</h3>
+
+<% if @favorites.blank? %>
+  <h5>Você não tem nenhuma lista favorita.</h5>
+<% else %>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="row">Titulo da Lista</th>
+        <th scope="row">Usuário</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @favorites.each do |favorite_list| %>
+        <tr>
+          <td><%= favorite_list.title %></td>
+          <td><%= favorite_list.user.email %></td>
+          <td>
+            <%= link_to 'Deletar', delete_favorited_list_path(list_id: favorite_list.id), method: :delete, remote: true, class: 'delete btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

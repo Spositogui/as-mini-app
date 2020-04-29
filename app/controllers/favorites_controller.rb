@@ -1,4 +1,16 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    return nil if current_user.favorite.nil?
+    @favorites = current_user.favorite.lists
+  end
+
+  def delete_favorited_list
+    current_user.favorite.lists.delete(List.find(params[:list_id]))
+    render 'delete_favorited_list.js.erb'
+  end
+
   def favorite
     list = List.find(params[:list_id])
     current_user.favorite ||= Favorite.create(user_id: current_user.id)
