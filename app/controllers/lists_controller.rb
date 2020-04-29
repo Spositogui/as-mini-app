@@ -30,6 +30,6 @@ class ListsController < ApplicationController
     
     def list_params
       params.require(:list).permit(:title, :description, :status, 
-        tasks_attributes: Task.attribute_names.map(&:to_sym).push(:_destroy))
+        tasks_attributes: [:id, :name, :_destroy])
     end
 end
