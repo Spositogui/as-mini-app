@@ -11,14 +11,8 @@
         <th scope="col">Usuario</th>
       </tr>
     </thead>
-    <tbody>
-      <% @public_lists.each do |list| %>
-        <tr>  
-          <th scope="row">Star</th>
-          <td><%= list.title %></td>
-          <td><%= list.user.email %></td>
-        </tr>
-      <% end %>
+    <tbody class="tbody">
+      <%= render 'lists', lists: @public_lists %>
     </tbody>
   </table>
 <% end %>
