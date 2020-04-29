@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_27_001739) do
+ActiveRecord::Schema.define(version: 2020_04_28_220338) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "favorites_lists", id: false, force: :cascade do |t|
+    t.integer "favorite_id", null: false
+    t.integer "list_id", null: false
+    t.index ["favorite_id", "list_id"], name: "index_favorites_lists_on_favorite_id_and_list_id"
+  end
 
   create_table "lists", force: :cascade do |t|
     t.string "title"
@@ -42,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_001739) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "favorites", "users"
   add_foreign_key "lists", "users"
   add_foreign_key "tasks", "lists"
 end
