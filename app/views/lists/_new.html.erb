@@ -20,22 +20,8 @@
 
   <div class="modal-footer">
     <%= link_to_add_task 'Adicionar tarefa', f, :tasks, class: 'btn btn-warning' %>
-    <%= f.submit @list.new_record? ? 'Criar lista' : 'Salvar mudanças', class: 'btn btn-primary' %>
+    <%= f.submit 'Criar lista', class: 'btn btn-primary' %>
   </div>
 <% end %>
 
-<script>
- $('form').on('click', '.add-task-fields', function(event) {
-    var regexp, time;
-    time = new Date().getTime();
-    regexp = new RegExp($(this).data('id'), 'g');
-    $('.task-fields').append($(this).data('fields').replace(regexp, time));
-    return event.preventDefault();
-  });
-
-  $('form').on('click', '.remove-task-field', function(event){
-    $(this).prev('input[type=hidden]').val('1');
-    $(this).closest('tr').fadeOut();
-    return event.preventDefault();
-  })
-</script>
+<%= javascript_pack_tag 'add_remove_task_fields', 'data-turbolinks-track': 'reload' %>

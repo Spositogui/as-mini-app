@@ -1,0 +1,24 @@
+<%= form_with model: @list do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Titulo' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+
+  <table class="table">
+    <tbody class="task-fields">
+      <%= f.fields_for :tasks do |task| %>
+        <tr class="task-row">
+          <td>
+            <%= task.label :name, class: 'hidden' %>
+            <%= task.text_field :name, placeholder: 'Ex: Ir ao mercado', class: 'form-control' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

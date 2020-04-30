@@ -2,7 +2,7 @@
   <tbody>
     <% @lists.each do |list| %>
       <tr>
-        <td><%= list.title %></td>
+        <td><%= link_to list.title, edit_list_path(list), remote: true %></td>
         <td><%= "Estado: #{list.status.capitalize}" %></td>
         <td><%= link_to 'Excluir', list, method: :delete, remote: true, class: 'delete btn btn-danger' %></td>
       </tr>

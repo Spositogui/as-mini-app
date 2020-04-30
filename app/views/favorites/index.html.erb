@@ -13,7 +13,7 @@
     <tbody>
       <% @favorites.each do |favorite_list| %>
         <tr>
-          <td><%= favorite_list.title %></td>
+          <td><%= link_to favorite_list.title, entire_list_path(list_id: favorite_list.id), remote: true %></td>
           <td><%= favorite_list.user.email %></td>
           <td>
             <%= link_to 'Deletar', delete_favorited_list_path(list_id: favorite_list.id), method: :delete, remote: true, class: 'delete btn btn-danger' %>

@@ -1,0 +1,40 @@
+<%= form_with model: @list do |f| %>
+  <div class="form-group">
+    <%= f.label :title, 'Titulo' %>
+    <%= f.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_field :description, class: 'form-control' %>
+  </div>
+  
+  <%= collection_radio_buttons( :list, :status, List.statuses, :first, :first) do |b| %>
+    <div class="form-check form-check-inline">
+      <%= b.label(:"data-value" => b.value) { b.radio_button(class: 'form-check-input') + b.text.capitalize } %>
+    </div>
+  <% end %>
+
+  <table class="table">
+    <tbody class="task-fields">
+      <%= f.fields_for :tasks do |task| %>
+        <tr class="task-row">
+          <td>
+            <%= task.label :name, class: 'hidden' %>
+            <%= task.text_field :name, placeholder: 'Ex: Ir ao mercado', class: 'form-control' %>
+          </td>
+          <td>
+            <%= task.check_box :_destroy, class: 'hidden' %>
+            <%= task.label :delete, 'Deletar', class: 'remove-task-field btn btn-danger' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="modal-footer">
+    <%= link_to_add_task 'Adicionar tarefa', f, :tasks, class: 'btn btn-warning' %>
+    <%= f.submit 'Salvar mudanças', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<%= javascript_pack_tag 'add_remove_task_fields', 'data-turbolinks-track': 'reload' %>

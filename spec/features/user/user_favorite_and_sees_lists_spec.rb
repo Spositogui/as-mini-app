@@ -60,6 +60,22 @@ feature 'User favorit lists and sees favorited lists' do
       expect(page).to have_content('Games')  
     end
 
+    scenario 'and see entire list', js: true do
+      user = create(:user)
+      create(:favorite, user_id: user.id)
+      user2 = create(:user, email: 'user2@example.com')
+      list = create(:list, title: 'Games', status: :publica, user_id: user2.id)
+      create(:task, name: 'Valorant', list: list)
+      user.favorite.lists << list
+
+      login_as(user, scope: :user)
+      visit favorites_path
+      click_on 'Games'
+
+      expect(page).to have_selector("input[value='Games']")
+      expect(page).to have_selector("input[value='Valorant']") 
+    end
+
     scenario 'and not have any favorited list' do
       user = create(:user)
       

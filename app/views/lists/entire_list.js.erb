@@ -1,0 +1,3 @@
+$('.modal-title').html('Autor: <%= @list.user.email %>');
+$('.modal-body').html("<%= j(render 'shared/entire_list') %>");
+$('#modal').modal('show');

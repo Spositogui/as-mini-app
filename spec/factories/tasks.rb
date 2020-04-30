@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    name { "MyString" }
+    name { "Fazer algo" }
     list { nil }
   end
 end

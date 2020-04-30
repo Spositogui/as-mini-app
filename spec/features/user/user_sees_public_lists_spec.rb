@@ -17,6 +17,20 @@ feature 'User sees other users public lists' do
     expect(page).not_to have_content('Lista C')
   end
 
+  scenario 'and see entire list include tasks', js: true do
+    user = create(:user)
+    user_b = create(:user, email: 'userb@example.com')
+    list = create(:list, title: 'Livros', status: :publica, user: user_b)
+    create(:task, name: 'American Gods', list: list)
+
+    login_as(user, scope: :user)
+    visit public_lists_path
+    click_on 'Livros'
+
+    expect(page).to have_selector("input[value='Livros']")
+    expect(page).to have_selector("input[value='American Gods']")
+  end
+
   scenario 'and not have any public list' do
     user = create(:user)
 

@@ -5,7 +5,7 @@
         <i class="<%= change_star(list, current_user) %> fa-star not-favorite"></i>
       <% end %>
     </th>
-    <td><%= list.title %></td>
+    <td><%= link_to list.title, entire_list_path(list_id: list.id), remote: true %></td>
     <td><%= list.user.email %></td>
   </tr>
 <% end %>
