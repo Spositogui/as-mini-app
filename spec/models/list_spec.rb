@@ -31,6 +31,14 @@ describe List do
       expect(List.count).to eq(0)
       expect(result.errors.full_messages).to include("User must exist")
     end
+
+    it 'created with task' do
+      user = create(:user)
+      list = create(:list, title: 'Games', user_id: user.id)
+      create(:task, name: 'Brain', list: list)
+
+      expect(list.tasks.count).to eq(1)
+    end
   end
 
   describe '.public_lists' do
